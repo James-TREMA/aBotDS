@@ -9,61 +9,12 @@ import {
 } from 'discord.js';
 
 export async function handleCommands(message: Message, client: Client): Promise<void> {
-    if (message.content.startsWith('!r ')) {
-        await handleResponse(message, client);
-    } else if (message.content.startsWith('!avis')) {
+    if (message.content.startsWith('!avis')) {
         await handleAvis(message, client);
     } else if (message.content === '!clear') {
         await handleClear(message, client);
     } else if (message.content === '!close') {
         await handleClose(message, client);
-    }
-}
-
-async function handleResponse(message: Message, client: Client): Promise<void> {
-    if (!message.channel || !(message.channel instanceof TextChannel)) {
-        await message.reply('Cette commande ne peut être utilisée que dans un salon textuel.');
-        return;
-    }
-
-    const response = message.content.slice(3);
-    if (!response.trim()) {
-        await message.reply('Le message ne peut pas être vide.');
-        return;
-    }
-
-    if (!message.channel.name.startsWith('ticket-')) {
-        await message.reply('Cette commande ne peut être utilisée que dans un canal de ticket.');
-        return;
-    }
-
-    const ticketOwnerId = message.channel.name.split('ticket-')[1];
-    if (!ticketOwnerId) {
-        await message.reply('Impossible de trouver l\'ID du propriétaire du ticket.');
-        return;
-    }
-
-    try {
-        const user = await client.users.fetch(ticketOwnerId);
-        if (!user) {
-            await message.reply('Impossible de trouver l\'utilisateur associé au ticket.');
-            return;
-        }
-
-        const embed = new EmbedBuilder()
-            .setColor('#00ff00')
-            .setTitle('Réponse du Staff')
-            .setDescription(response)
-            .setFooter({ text: `Réponse de ${message.author.tag}` })
-            .setTimestamp();
-
-        await Promise.all([
-            user.send({ embeds: [embed] }),
-            message.channel.send({ embeds: [embed] })
-        ]);
-    } catch (error) {
-        console.error('Erreur lors de l\'envoi de la réponse:', error);
-        await message.reply('Une erreur est survenue lors de l\'envoi de la réponse.');
     }
 }
 
