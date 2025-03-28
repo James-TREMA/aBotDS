@@ -29,7 +29,7 @@ Un bot Discord moderne pour la gestion des tickets et le support utilisateur, d�
 ## ⚙️ Configuration
 
 ### Variables d'Environnement
-Créez un fichier `.env` avec les variables suivantes, à la racine du projet:
+Créez un fichier `.env` avec les variables suivantes, à la racine du projet :
 ```env
 DISCORD_TOKEN=votre_token_discord
 CLIENT_ID=id_de_votre_application
