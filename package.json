@@ -1,0 +1,26 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "Bot Discord pour la gestion des tickets",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "deploy": "ts-node src/deploy-commands.ts",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "@discordjs/builders": "^1.7.0",
+    "@discordjs/rest": "^2.2.0",
+    "discord-bot": "file:",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}
